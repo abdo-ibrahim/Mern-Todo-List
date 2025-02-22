@@ -6,12 +6,7 @@ const errorHandler = require("./utils/errorHandler");
 const app = express();
 app.use(cookieParser(process.env.JWT_SECRET_KEY));
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://mern-todo-list-kappa.vercel.app",
-    credentials: true,
-  })
-);
+app.use(cors());
 // Routes
 app.use(apiRoutes);
 app.all("*", (req, _, next) => {
