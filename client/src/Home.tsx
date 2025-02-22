@@ -19,6 +19,8 @@ const Home = () => {
     setLoading(true);
 
     try {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
       const response = await api.get(todoApi);
       setTodos(response.data || []);
     } catch (error) {
