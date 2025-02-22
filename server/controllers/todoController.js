@@ -2,10 +2,15 @@ const asyncHandler = require("../utils/asyncHandler");
 const AppError = require("../utils/appErrors");
 const Todo = require("../models/todoModel");
 
-exports.getTodos = asyncHandler(async (req, res) => {
-  console.log(req.user);
-  const todos = await Todo.find({ user: req.user._id });
-  return res.status(200).json(todos);
+exports.getTodos = asyncHandler(async (req, res, next) => {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
+  try {
+    const todos = await Todo.find({ user: req.user._id }).select("-password");
+    res.status(200).json({ status: "success", data: { todos } });
+  } catch (error) {
+    return next(new AppError("Error fetching todos", 500));
+  }
 });
 
 exports.addTodo = asyncHandler(async (req, res) => {
