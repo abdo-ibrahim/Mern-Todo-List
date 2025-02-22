@@ -1,6 +1,6 @@
 import axios from "axios";
 import getToken from "./getToken";
-export const baseURL = "http://localhost:5000/api/v1";
+export const baseURL = "mern-todo-list-onis-backend.vercel.app/api/v1";
 
 export const todoApi = `${baseURL}/todos`;
 export const authApi = `${baseURL}/auth`;
