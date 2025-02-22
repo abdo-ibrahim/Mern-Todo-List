@@ -14,6 +14,9 @@ app.use(
 );
 // Routes
 app.use(apiRoutes);
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ status: "OK", message: "Server is up and running!" });
+});
 app.all("*", (req, _, next) => {
   const err = new Error(`Can't Find ${req.originalUrl}`);
   err.status = "fail";
