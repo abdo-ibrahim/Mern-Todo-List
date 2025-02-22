@@ -8,9 +8,9 @@ const createToken = (res, user) => {
 
   // Configure the options for the cookie
   const cookieOptions = {
-    // httpOnly: true,
+    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "static",
     maxAge: 1000 * 60 * 60 * 24 * 30, // 30 يوم
   };
 
