@@ -4,6 +4,7 @@ import api, { todoApi } from "./utils/api";
 import axios from "axios";
 import CreateTodo from "./components/CreateTodo";
 import { useNavigate } from "react-router-dom";
+
 const Home = () => {
   const [todos, setTodos] = useState<{ _id: string; title: string; done: boolean }[]>([]);
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const Home = () => {
       }
     }
   };
+
   useEffect(() => {
     fetchTodos();
   }, []);

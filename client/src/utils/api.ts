@@ -1,11 +1,12 @@
 import axios from "axios";
 import getToken from "./getToken";
+import Cookies from "js-cookie";
+
 export const baseURL = "https://mern-todo-list-onis-backend.vercel.app/api/v1";
 
 export const todoApi = `${baseURL}/todos`;
 export const authApi = `${baseURL}/auth`;
 
-const token = getToken();
 const api = axios.create({
   baseURL,
   withCredentials: true,
@@ -13,6 +14,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
+    const token = getToken();
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -28,6 +30,8 @@ api.interceptors.response.use(
   (error) => {
     if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
       console.error("Unauthorized access. Please log in again.");
+      Cookies.remove("token");
+      window.location.href = "/login";
     }
     return Promise.reject(error);
   }
