@@ -57,12 +57,11 @@ exports.logout = (req, res) => {
   res.cookie("token", "loggedout", {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
-    sameSite: "static",
+    sameSite: "strict",
     maxAge: Date.now() + 1,
   });
-  const token = req.cookies.token;
 
-  res.status(200).json({ status: "success", message: "You have been logged out.", token: token });
+  res.status(200).json({ status: "success", message: "You have been logged out." });
 };
 // Protect route : verify token if logged in
 exports.protect = asyncHandler(async (req, res, next) => {
