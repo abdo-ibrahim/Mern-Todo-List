@@ -1,5 +1,5 @@
 import api, { authApi } from "@/utils/api";
-import getUserFromToken from "@/utils/getUserFromToken";
+import { getUserFromToken } from "@/utils/getUserFromToken";
 import Cookies from "js-cookie";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
@@ -8,7 +8,6 @@ const Header = () => {
   const user = getUserFromToken();
   const location = useLocation();
   const navigate = useNavigate();
-
   const getPageName = (path: string): string => {
     switch (path) {
       case "/login":

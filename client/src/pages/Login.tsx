@@ -2,15 +2,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { authApi } from "./utils/api";
+import { authApi } from "../utils/api";
+import { useAuth } from "@/context/AuthContext";
+import { getUserFromToken } from "@/utils/getUserFromToken";
 
 const LoginPage: React.FC = () => {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { user, setUser } = useAuth();
   axios.defaults.withCredentials = true;
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +22,8 @@ const LoginPage: React.FC = () => {
         userName,
         password,
       });
+      const userData = getUserFromToken();
+      setUser(userData);
       navigate("/");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -28,7 +33,9 @@ const LoginPage: React.FC = () => {
       }
     }
   };
-
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div className="flex justify-center items-center h-screen flex-col">
       <h1 className="mb-4 text-3xl">TodoList</h1>

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { authApi } from "./utils/api";
+import { authApi } from "@/utils/api";
 import Cookies from "js-cookie";
 
 const SignUpPage: React.FC = () => {

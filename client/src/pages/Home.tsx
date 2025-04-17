@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Todo from "./components/Todo";
-import api, { todoApi } from "./utils/api";
+import Todo from "../components/Todo";
+import api, { todoApi } from "../utils/api";
 import axios from "axios";
-import CreateTodo from "./components/CreateTodo";
+import CreateTodo from "../components/CreateTodo";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {

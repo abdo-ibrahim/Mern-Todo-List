@@ -8,6 +8,7 @@ app.use(cookieParser(process.env.JWT_SECRET_KEY));
 app.use(express.json());
 app.use(
   cors({
+    // origin: ["http://localhost:5173"],
     origin: ["https://mern-todo-list-kappa.vercel.app"],
     credentials: true,
   })
