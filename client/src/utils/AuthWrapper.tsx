@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 
 const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
+  console.log("AuthWrapper user", user);
   const [delay, setDelay] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {
