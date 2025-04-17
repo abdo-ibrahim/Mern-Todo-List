@@ -3,7 +3,7 @@ import getToken from "./getToken";
 import Cookies from "js-cookie";
 
 // export const baseURL = "http://localhost:5000/api/v1";
-export const baseURL = "https://mern-todo-list-onis-backend.vercel.app/api/v1";
+export const baseURL = "https://mern-todo-list-backend-three.vercel.app/api/v1";
 
 export const todoApi = `${baseURL}/todos`;
 export const authApi = `${baseURL}/auth`;
