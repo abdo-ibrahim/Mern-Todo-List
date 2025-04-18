@@ -10,7 +10,7 @@ const createToken = (res, user) => {
   const cookieOptions = {
     httpOnly: false, // ← غيّر هذا السطر
     secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
+    sameSite: "strict",
     maxAge: 1000 * 60 * 60 * 24 * 30,
   };
 
